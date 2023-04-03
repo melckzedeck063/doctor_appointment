@@ -35,7 +35,7 @@ const SIgnUpScreen = () => {
         navigation.setOptions({
             // headerShown : false,
             headerStyle : {
-                backgroundColor : "#0e2433"
+                backgroundColor : "#0891b2"
             },
             headerTintColor : "white"
         })

@@ -1,7 +1,8 @@
 import { View, Text, ImageBackground, TouchableOpacity, Platform } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import image1 from '../assets/images/pexels-anna-shvets-4421547.jpg';
+import image1 from '../assets/images/pexels-thirdman-7659874.jpg';
+import {LinearGradient} from 'expo-linear-gradient'
 
 const WelcomeScreen = () => {
     const  navigation =  useNavigation();
@@ -14,7 +15,8 @@ const WelcomeScreen = () => {
     })
 
   return (
-    <View className={`h-full`}>
+      <LinearGradient colors={['#3498DB', 'transparent']} className="bg-slate-100 w-full h-full" style={{flex : 1}}>
+          <View className={`h-full`}>
         <ImageBackground  resizeMode='cover'
            source={image1}
            style={{
@@ -41,9 +43,9 @@ const WelcomeScreen = () => {
             </View>
 
         </ImageBackground>
-
-
     </View>
+    </LinearGradient>
+
   )
 }
 

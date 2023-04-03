@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DPA",
-    "slug": "DPA",
+    "name": "doctor_appointment",
+    "slug": "doctor_appointment",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.melckzedeck063.doctor_appointment"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9d7fac4a-4de7-406c-84c0-6d736a969363"
+      }
     }
   }
 }

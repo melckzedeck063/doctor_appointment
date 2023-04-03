@@ -85,7 +85,7 @@ const DoctorScreen = () => {
         </Text>
      </View>
 
-     <View className={`flex-row flex justify-between mx-4 my-4`}>
+     <View className={`flex-row flex justify-between mx-4 my-2`}>
         <View className={``}>
             <Text className={`text-slate-500 text-sm`}>Patients</Text>
             <Text className={`text-slate-600 font-bold text-lg`}> 1.02K+ </Text>
@@ -100,8 +100,39 @@ const DoctorScreen = () => {
             <Text className={`text-slate-500 text-sm`}>Reviews</Text>
             <Text className={`text-slate-600 font-bold text-lg`}> 2.00K+ </Text>
         </View>
-
      </View>
+
+
+        {/* <View className={``}>
+            <Text className={`text-lg  text-slate-700 font-bold px-2 my-1.5`}> Working Hours </Text>
+            <View className={`flex flex-row justify-between mx-4`}>
+                <TouchableOpacity className={`bg-cyan-600 rounded-lg py-3 px-2`} >
+                    <Text className={`text-white font-bold`} > 09:00 AM </Text>
+                </TouchableOpacity>
+                <TouchableOpacity className={`bg-cyan-600 rounded-lg py-3 px-2`} >
+                    <Text className={`text-white font-bold`} > 04:00 PM </Text>
+                </TouchableOpacity>
+                <TouchableOpacity className={`bg-cyan-600 rounded-lg py-3 px-2`} >
+                    <Text className={`text-white font-bold`} > 06:00 PM </Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+
+        <View className={``}>
+            <Text className={`text-lg  text-slate-700 font-bold px-2 my-1.5`}> Schedules </Text>
+            <View className={`flex flex-row justify-between mx-4`}>
+                <TouchableOpacity className={`bg-cyan-600 rounded-lg py-3 px-2`} >
+                    <Text className={`text-white font-bold`} > 09:00 AM </Text>
+                </TouchableOpacity>
+                <TouchableOpacity className={`bg-cyan-600 rounded-lg py-3 px-2`} >
+                    <Text className={`text-white font-bold`} > 04:00 PM </Text>
+                </TouchableOpacity>
+                <TouchableOpacity className={`bg-cyan-600 rounded-lg py-3 px-2`} >
+                    <Text className={`text-white font-bold`} > 06:00 PM </Text>
+                </TouchableOpacity>
+            </View>
+        </View> */}
+
       <TouchableOpacity style={{alignSelf : 'center'}} className="bg-cyan-600 rounded-lg w-10/12 h-12 px-4 pt-1 my-6">
          <Text className={`font-bold text-white text-center mt-1 text-lg ${Platform.select({android : 'text-sm'})}`}>Book  an Appointment</Text>
       </TouchableOpacity>

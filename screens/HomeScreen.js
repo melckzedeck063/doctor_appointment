@@ -10,6 +10,7 @@ import image1 from '../assets/images/pexels-shvets-production-8413184.jpg';
 import image2 from '../assets/images/pexels-alexander-zvir-9062164.jpg';
 import image3 from '../assets/images/pexels-mix-and-match-studio-4227112.jpg';
 import image4 from '../assets/images/pexels-thirdman-7659874.jpg';
+import image from '../assets/images/pexels-thirdman-7659874.jpg'
 // import categoryCard from '../components/categoryCard';
 // import CategoryCard from '../components/categoryCard';
 import ProductCard from '../components/ProductCard';
@@ -143,7 +144,7 @@ const HomeScreen = () => {
          />
       </View>
 
-      <View className={` mb-1.5 ${height> 750? 'mt-2' : 'mt-1'} ${height > 700 ?Platform.select({android : 'mt-2'}) : ''}`} >
+      <View className={` mb-1.5 ${height> 750? 'mt-2' : 'mt-1'} ${height > 700 ?Platform.select({android : 'mt-1'}) : ''}`} >
         <View style={style.container} className="">
          <View className="flex-row justify-between" >
           <View>
@@ -187,7 +188,7 @@ const style = StyleSheet.create({
     width  : '90%'
    },
    container: {
-    height: responsiveHeight(38), // 50% of window height
+    height: responsiveHeight(37), // 50% of window height
     width: responsiveWidth(100), // 50% of window width
   },
   sampleText: {
