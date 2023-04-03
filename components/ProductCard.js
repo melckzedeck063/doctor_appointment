@@ -11,22 +11,25 @@ const ProductCard = (props) => {
 
   return (
     <View style={style.card} className="bg-slate-700 mx-1.5 my-1.5 relative rounded-lg">
-      <TouchableOpacity onPress={() => navigation.navigate('Disease', {
+      <TouchableOpacity 
+       onPress={() => navigation.navigate('Doctor', {
         props
-      }) } >
-        <Image source={props.image} className="h-52 w-full rounded-lg"  />
-      <View style={{alignSelf : 'center'}} className="bg-cyan-600 absolute w-11/12 rounded-lg -py-1 bottom-1" >
-        <Text className={`text-white text-lg font-bold capitalize ${Platform.select({android : 'text-sm'})}`} > {props.name} </Text>
-        <View className="flex-row justify-between px-1">
-            <View className="mt-1">
-              <Text className={`text-white -mt-0.5 ${Platform.select({android : 'text-xs'})}`} > 3000 Tsh </Text>
+       }) }
+      >
+        <Image source={props.image} className="h-64 w-full rounded-lg"  />
+      <View style={{alignSelf : 'center'}} className="bg-cyan-600 absolute w-11/12 rounded-lg -pt-1 bottom-0" >
+            <View className="mtt-1 px-1">
+                <View className={`pyy-1`}>
+                   <Text className={`text-white  text-lg font-bold capitalize ${Platform.select({android : 'text-sm'})}`} > {props.name} </Text>
+                    <Text className={`text-sm -mt-1 ml-1 text-white`}>Medicine Specialist</Text>
+                </View>
+
+             <View className={`py-1 px-1 -mt-1`}>
+              <Text className={`text-white font-bold text-lg -mt-0.5 ${Platform.select({android : 'text-xs'})}`} >Experience </Text>
+              <Text className={`font-medium -mt-1 text-sm text-white`} > 5 years </Text>
+             </View>
             </View>
-            <TouchableOpacity  className="bg-teal-500 rounded-l-xl bottom-3" >
-                <Text className="text-white  text-xl px-2 py-0.5">
-                    <FontAwesome name='plus' size={16} color="white"  />
-                </Text>
-            </TouchableOpacity>
-        </View>
+            
       </View>
       </TouchableOpacity>
     </View>

@@ -11,13 +11,14 @@ import image3 from '../assets/images/pexels-mix-and-match-studio-4227112.jpg';
 import image4 from '../assets/images/pexels-thirdman-7659874.jpg';
 import ProductCard from '../components/ProductCard'
 
-const categories =  [
-    {name : "Heart diseases", image :image1, id : 1 },
-    {name : "Kids diseases", image :image2, id : 2 },
-    {name : "Bones Diseases", image :image3, id: 3 },
-    {name : "Bites", image : image4 , id : 4},
-    {name : "Fast food", image :image1, id: 5 },
-    {name : "Womens diseases", image :image2, id : 6 },
+
+  const doctors =  [
+    {name : "James Cotton", image :image1, id : 1 },
+  {name : "Joshua Francis", image :image2, id : 2 },
+  {name : "Hamilton Partey", image :image3, id: 3 },
+  {name : "Whitney Humphrey", image : image4 , id : 4},
+  {name : "Miranda Johnson", image :image1, id: 5 },
+  {name : "Ezekiel Michael", image :image2, id : 6 },
   ]
 
 const DiseaseScreen = () => {
@@ -46,34 +47,6 @@ const DiseaseScreen = () => {
         </View>
       </View>
 
-      {/* <View className="flex flex-row justify-between py-2 my-2 px-4">
-        <View>
-            <Text className={`font-bold capitalize text-white text-xl ${Platform.select({android : 'text-lg'})}`}>{props.name}</Text>
-            <Text className={`text-white font-medium py-1 ${Platform.select({android : 'text-xs'})}`}>Product category</Text>
-        </View>
-        <View>
-            <Text className={`text-white font-bold text-2xl py-2 ${Platform.select({android : 'text-xl'})}`}> 4000 Tshs</Text>
-        </View>
-      </View> */}
-
-     {/* <View className="mb-3 p-2">
-       <Text className={`font-bold capitalize text-white px-1.5 text-xl ${Platform.select({android : 'text-lg'})}`}>Ingredients</Text>
-       <View className="bg-slate-700 rounded-lg shadow-lg felx flex-row justify-between m-3 py-1 px-2">
-        <View className="bg-slate-600 rounded-2xl w-10 h-10">
-            <Text className="text-center font-bold mt-1"> <MaterialCommunityIcons name='fruit-watermelon' size={32} color="orange" /> </Text>
-        </View>
-        <View className="bg-slate-600 rounded-2xl w-10 h-10">
-            <Text className="text-center mt-1 font-bold"><MaterialCommunityIcons name='fruit-grapes' size={32} color="red" /></Text>
-        </View>
-        <View className="bg-slate-600 rounded-2xl w-10 h-10">
-            <Text className="text-center mt-1 font-bold"><MaterialCommunityIcons name='fruit-pineapple' size={32} color="gold" /></Text>
-        </View>
-        <View className="bg-slate-600 rounded-2xl w-10 h-10">
-            <Text className="text-center mt-1 font-bold"><MaterialCommunityIcons name='fruit-citrus' size={32} color="orange" /></Text>
-        </View>
-       </View>
-     </View> */}
-
      <View className="mx-2 px-2 mb-3">
         <Text className={`font-bold capitalize text-cyan-600 text-xl py-2 ${Platform.select({android : 'text-lg'})}`}>{props.name}</Text>
         <Text className={`font-mediumm capitalize text-cyann-600 px-2 ${Platform.select({android : 'text-xs'})}`}> 
@@ -91,15 +64,15 @@ const DiseaseScreen = () => {
           <View>
              <Text className={`text-cyan-600 font-bold text-lg px-2 py-1.5 ${Platform.select({android : 'text-sm'})}`} >Specialists</Text>
           </View>
-           <TouchableOpacity
+           {/* <TouchableOpacity
             onPress={() =>  navigation.navigate('AllCategories')}
            > 
            <Text className={`text-amber-500 text-lg mr-1 ${Platform.select({android : 'text-sm mr-2'})}`}  > See All </Text>  
-           </TouchableOpacity>
+           </TouchableOpacity> */}
         </View>
         
          <FlatList 
-          data={categories}
+          data={doctors}
           horizontal = {false}
           showsHorizontalScrollIndicator ={false}
           numColumns={2}

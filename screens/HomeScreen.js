@@ -14,6 +14,7 @@ import image4 from '../assets/images/pexels-thirdman-7659874.jpg';
 // import CategoryCard from '../components/categoryCard';
 import ProductCard from '../components/ProductCard';
 import { SafeAreaView } from 'react-native-safe-area-context'
+import CategoryCard from '../components/CategoriesCard'
 
 const categories =  [
   {name : "Heart diseases", image :image1, id : 1 },
@@ -22,6 +23,15 @@ const categories =  [
   {name : "Bites", image : image4 , id : 4},
   {name : "Fast food", image :image1, id: 5 },
   {name : "Womens diseases", image :image2, id : 6 },
+]
+
+const doctors =  [
+    {name : "James Cotton", image :image1, id : 1 },
+  {name : "Joshua Francis", image :image2, id : 2 },
+  {name : "Hamilton Partey", image :image3, id: 3 },
+  {name : "Whitney Humphrey", image : image4 , id : 4},
+  {name : "Miranda Johnson", image :image1, id: 5 },
+  {name : "Ezekiel Michael", image :image2, id : 6 },
 ]
 
 const HomeScreen = () => {
@@ -50,38 +60,47 @@ const HomeScreen = () => {
 
   return (
     <>
-      {/* <SafeAreaView className="" /> */}
-    <View style={{ height : height, width : width}} className={`bg-slate-100 text-white relative px-1`}>
-      <View style={{height : responsiveHeight(2.8)}} className={`flex-row justify-between px-4 mt-16 ${height<=500?Platform.select({android : 'mt-8'}) :height>700?Platform.select({android : 'mt-14'}) :Platform.select({android : 'mt-8'})}`} >
+    <View style={{ height : height, width : width}} className={`bg-cyan-600 text-white relative pxx-1`}>
+      <SafeAreaView className="bg-teal" />
+      <View style={{height : responsiveHeight(2.5)}} className={`flex-row justify-between px-4 -mt-4 ${height<=500?Platform.select({android : 'mt-4'}) :height>700?Platform.select({android : 'mt-8'}) :Platform.select({android : 'mt-8'})}`} >
         <View className="" >
             <TouchableOpacity className="rounded-lg bg-whitee h-8  w-8" >
                 <Text>
-                    <FontAwesome name='navicon' size={32}  color="teal"  />
+                    {Platform.select({ios :  <FontAwesome name='navicon' size={32}  color="white"  />})}
+                    {Platform.select({android:  <FontAwesome name='navicon' size={24}  color="white"  />})}
                 </Text>
             </TouchableOpacity>
         </View>
+        <Text className={`text-white font-bold text-lg -mt-1`}>  Doctor Appointment  </Text>
         <View className="" >
         <TouchableOpacity className="rounded-lg bg-whitee h-8  w-8" >
                 <Text>
-                <Ionicons name="notifications-sharp" size={32} color="teal" />
+                {Platform.select({ios : <Ionicons name="notifications-sharp" size={32} color="white" />})}
+                {Platform.select({android  :  <Ionicons name="notifications-sharp" size={24} color="white" />})}
                 </Text>
         </TouchableOpacity>
         </View>
       </View>
 
-      <View style={{alignSelf : 'center', height : responsiveHeight(5)}} className="my-8 flex-row space-x-6 justify-between w-full px-3" >
+      <View className={`bg-white  rounded-t-3xl mt-8 w-full`}>
+      <View style={{alignSelf : 'center', height : responsiveHeight(14)}} className="my-8 mt-6 bg-cyan-600  space-x-6 justify-between w-10/12 rounded-xl px-3" >
+        <View className={``}>
+            <View className={`py-2`}>
+                <Text className={`font-bold text-lg text-white text-center ${Platform.select({ios : 'py-1.5'})} `} > Healthy or Expensive </Text>
+                <Text className={`text-white font-medium px-6 ${Platform.select({android : 'text-xs -pt-1'})}`}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quos ratione  </Text>
+            </View>
+            {/* <View>
+                <Text> Home sweet home </Text>
+            </View> */}
+        </View>
       <View className="w-10/12">       
       <Controller
         control={control}
         rules={{
           required: {value : true, message :  "Password is required"},
-          pattern: {
-            value: /^([a-zA-Z0-9]{8,16})$/,
-            message: 'Must contain atleast 8 characters'
-          }
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput  className={`rounded-md bg-gray-400 text-lg text-white px-4 h-10 py-1  'border-2 border-green-500 ${Platform.select({android : 'py-1.5'})}`}
+          <TextInput  className={`rounded-md bg-gray-200 text-lg text-cyan-700 px-4 h-10 pb-2  'border-2 border-green-500 ${Platform.select({android : 'py-1.5'})}`}
           placeholder="Search"
             onBlur={onBlur}
             paddingVertical={1}
@@ -93,21 +112,17 @@ const HomeScreen = () => {
         name="search"
       />
       </View>
-      <TouchableOpacity className="" >
-        <Text className="" > 
-        <MaterialCommunityIcons name="sort" size={42} color="teal" />
-         </Text>
-      </TouchableOpacity>
       </View>
-      {/* <View style={{height : responsiveHeight(27) }} className={`w-full ${Platform.select({android : 'mt-2'})}`} >
+
+      <View style={{height : responsiveHeight(20) }} className={`w-full ${Platform.select({android : 'mt-2'})}`} >
         <View className="flex-row justify-between" >
           <View>
-             <Text className={`text-cyan-600 font-bold text-lg px-2 py-1.5 ${Platform.select({android : 'text-sm'})}`} >Categories</Text>
+             <Text className={`text-slate-700 font-bold text-lg px-2 py-1.5 ${Platform.select({android : 'text-sm'})}`} >Categories</Text>
           </View>
            <TouchableOpacity
             onPress={() =>  navigation.navigate('AllCategories')}
            > 
-           <Text className={`text-amber-500 text-lg mr-1 ${Platform.select({android : 'text-sm mr-2'})}`}  > See All </Text>  
+           <Text className={`text-cyan-600 text-lg mr-1 ${Platform.select({android : 'text-sm mr-2'})}`}  > See All </Text>  
            </TouchableOpacity>
         </View>
         
@@ -126,23 +141,24 @@ const HomeScreen = () => {
           }}
           keyExtractor={(item) => item.id}
          />
-      </View> */}
+      </View>
 
-      <View className={` mb-1.5 ${height> 750? 'mt-2' : 'mt-1'} ${height > 700 ?Platform.select({android : '-mt-8'}) : ''}`} >
+      <View className={` mb-1.5 ${height> 750? 'mt-2' : 'mt-1'} ${height > 700 ?Platform.select({android : 'mt-2'}) : ''}`} >
         <View style={style.container} className="">
          <View className="flex-row justify-between" >
           <View>
-             <Text className={`text-cyan-600 font-bold text-lg px-2 py-1.5 ${Platform.select({android : 'text-sm'})}`} > Popular Diseases </Text>
+             <Text className={`text-slate-700 font-bold text-lg px-2 py-1.5 ${Platform.select({android : 'text-sm'})}`} > Popular Diseases </Text>
           </View>
-           {/* <TouchableOpacity 
-            onPress={() =>  navigation.navigate('AllProducts')}
+           <TouchableOpacity 
+            onPress={() =>  navigation.navigate('AllDoctors')}
            > 
-           <Text className={`text-amber-500 text-lg mr-1 ${Platform.select({android : 'text-sm mr-3'})}`} > See All </Text>  
-           </TouchableOpacity>  */}
+           <Text className={`text-cyan-600 text-lg mr-1 ${Platform.select({android : 'text-sm mr-3'})}`} > See All </Text>  
+           </TouchableOpacity> 
           </View>
           <FlatList className="borderd-2 border-gray-200 rounded pr-3 pl-1" 
            numColumns={2}
-           data={categories}
+           data={doctors}
+           showsVerticalScrollIndicator = {false}
            renderItem={(itemData) => {
             return (
               <ProductCard name={itemData.item.name} image={itemData.item.image}  />
@@ -150,6 +166,7 @@ const HomeScreen = () => {
            }}
           />
         </View>
+      </View>
       </View>
     </View>
     </>
@@ -170,7 +187,7 @@ const style = StyleSheet.create({
     width  : '90%'
    },
    container: {
-    height: responsiveHeight(74), // 50% of window height
+    height: responsiveHeight(38), // 50% of window height
     width: responsiveWidth(100), // 50% of window width
   },
   sampleText: {

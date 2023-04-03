@@ -8,6 +8,9 @@ import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SIgnUpScreen';
 import BottomNavigator from './components/BottomNavigator';
 import DiseaseScreen from './screens/DiseaseScreen';
+import DoctorScreen from './screens/DoctorScreen';
+import AllDoctors from './screens/AllDoctorsScreen';
+import AllCategories from './screens/AllCategories';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +46,13 @@ export default function App() {
                 }}
              />
              <Stack.Screen name='Disease'  component={DiseaseScreen} />
+             <Stack.Screen name='Doctor' component={DoctorScreen} />
+             <Stack.Screen name='AllDoctors' component={AllDoctors}
+                options={{title  : 'All Doctors'}}
+             />
+             <Stack.Screen name="AllCategories" component={AllCategories} 
+                options={{title  :  'All Categories'}}
+             />
          </Stack.Navigator>
      </NavigationContainer>
   );
