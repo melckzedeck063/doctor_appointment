@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "doctor_appointment",
-    "slug": "doctor_appointment",
+    "name": "teleconsultation",
+    "slug": "teleconsultation",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.melckzedeck063.doctor_appointment"
+      "package": "com.melckzedeck063.teleconsultation"
     },
     "web": {
       "favicon": "./assets/favicon.png"

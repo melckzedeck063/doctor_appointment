@@ -11,6 +11,7 @@ import DiseaseScreen from './screens/DiseaseScreen';
 import DoctorScreen from './screens/DoctorScreen';
 import AllDoctors from './screens/AllDoctorsScreen';
 import AllCategories from './screens/AllCategories';
+import AppointmentDetails from './screens/AppointmentDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,9 @@ export default function App() {
              />
              <Stack.Screen name="AllCategories" component={AllCategories} 
                 options={{title  :  'All Categories'}}
+             />
+             <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} 
+                options={{title  :  'Appointment Details'}}
              />
          </Stack.Navigator>
      </NavigationContainer>

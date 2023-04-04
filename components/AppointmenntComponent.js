@@ -9,7 +9,9 @@ const AppointmenntComponent = (props) => {
     // console.log(props)
 
   return (
-    <TouchableOpacity style={style.card} className={`w-full bgg-white rounded-lg mt-1 p-1 my-2`}>
+    <TouchableOpacity style={style.card} className={`w-full bgg-white rounded-lg mt-1 p-1 my-2`}
+      onPress={() => navigation.navigate('AppointmentDetails', {props}) }
+    >
         <View className={`border-b border-slate-400  px-2 flex flex-row justify-between my-2 pb-2`}>
             <View className={``}>
                 <Text className={`text-slate-700 my-1 `} >Date</Text>
@@ -53,7 +55,7 @@ const style = StyleSheet.create({
       elevation : 4,
       backgroundColor: 'white',
       shadowColor: 'black',
-      shadowOffset :{width : 0, height : 2} ,
+      shadowOffset :{width : 0, height : 2},
       shadowOpacity: 0.25,
       shadowRadius : 8,
       width  : '95%',

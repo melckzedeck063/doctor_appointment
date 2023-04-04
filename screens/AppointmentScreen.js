@@ -44,7 +44,7 @@ const AppointmentScreen = () => {
          showsVerticalScrollIndicator={false}
          renderItem={(itemData) =>{
             return (
-                <AppointmenntComponent name={itemData.item.name}   />
+                <AppointmenntComponent name={itemData.item.name} image={itemData.item.image}   />
             )
          }}
          keyExtractor={(item) => item.id}
