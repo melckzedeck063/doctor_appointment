@@ -2,7 +2,7 @@ import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, P
 import React, { useLayoutEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import {AntDesign, FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import {useResponsiveHeight, useResponsiveWidth, useResponsiveFontSize} from 'react-native-responsive-dimensions'
 
 const DoctorScreen = () => {
@@ -47,8 +47,22 @@ const DoctorScreen = () => {
 
       <View className="flex flexx-row justify-between py-2 my-2 px-4">
         <View>
-            <Text className={`font-bold capitalize text-slate-500 text-xl ${Platform.select({android : 'text-lg'})}`}>{props.name}</Text>
-            <Text className={`text-slate-500 font-medium py-1 ${Platform.select({android : 'text-xs'})}`}>Medicine Specialist</Text>
+            <View className="flex flex-row justify-between">
+                <View>
+                    <Text className={`font-bold capitalize text-slate-500 text-xl ${Platform.select({android : 'text-lg'})}`}>{props.name}</Text>
+                    <Text className={`text-slate-500 font-medium py-1 ${Platform.select({android : 'text-xs'})}`}>Medicine Specialist</Text>
+                </View>
+                <View>
+                     <TouchableOpacity className="bg-cyan-600 px-4 py-2 rounded-lg flex-row flex space-x-4" 
+                       onPress={() => navigation.navigate('Message') }
+                     >
+                        <Text  className={``}>
+                            <AntDesign name='message1' size={24}  color='white' />
+                        </Text>
+                        <Text className={`text-white font-medium text-lg ${Platform.select({android : 'text-sm'})}`} >Message</Text>
+                     </TouchableOpacity>
+                </View>
+            </View>
             <View className={`flex flex-row space-x-1 -ml-2`}>
                    <Text className="text-center font-bold -ml-1"> <Ionicons name='location' size={24} color="teal"/> </Text>
                 <View>

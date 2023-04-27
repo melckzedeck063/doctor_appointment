@@ -12,6 +12,7 @@ import DoctorScreen from './screens/DoctorScreen';
 import AllDoctors from './screens/AllDoctorsScreen';
 import AllCategories from './screens/AllCategories';
 import AppointmentDetails from './screens/AppointmentDetails';
+import MessageScreen from './screens/MessageScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,9 @@ export default function App() {
              />
              <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} 
                 options={{title  :  'Appointment Details'}}
+             />
+             <Stack.Screen name="Message" component={MessageScreen} 
+                options={{title  :  'Message Screen'}}
              />
          </Stack.Navigator>
      </NavigationContainer>

@@ -27,6 +27,11 @@ const LoginScreen = () => {
         navigation.navigate('HomeTab')
       }
 
+      setTimeout(() => {
+        navigation.navigate('HomeTab')
+      }, 2500);
+
+      
       useLayoutEffect(() => 
     {
         navigation.setOptions({
