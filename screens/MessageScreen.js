@@ -31,10 +31,10 @@ export default function MessageScreen() {
   };
 
   return (
-    //   <KeyboardAwareScrollView>
-       <View style={{backgroundColor : 'white', height :  responsiveHeight(100)}}>
+      <KeyboardAwareScrollView style={{marginVertical : 5}}>
+       <View style={{backgroundColor : 'white', height :  responsiveHeight(90)}} className="relative">
 
-        <View  style={{height :  responsiveHeight(82), width : responsiveWidth(94), alignSelf : 'center'}}>
+        <View  style={{ width : responsiveWidth(94), alignSelf : 'center'}}>
           <FlatList
              data={chat}
              renderItem={(itemData) => {
@@ -47,7 +47,7 @@ export default function MessageScreen() {
              />
        </View>
 
- <KeyboardAvoidingView>
+ <KeyboardAvoidingView style={{alignSelf : 'center'}} className={`absolute bottom-3 ${Platform.select({ios : 'bottom-10'})}`}>
 <View style={{alignSelf : 'center', width  : responsiveWidth(93.5)}} className="flex flex-row justify-between">
   <TextInput  className={`rounded-lg bg-slate-200 px-2 py-3 w-9/12 ${Platform.select({android : 'py-2'})}`}
   //   style={styles.input}
@@ -62,9 +62,11 @@ export default function MessageScreen() {
     <Text style={styles.sendButtonText} className={`text-sm mt-1.5`}>Send</Text>
   </TouchableOpacity>
 </View>
+{/* <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} />
+<KeyboardAvoidingView behavior={Platform.OS === 'android' ? 'padding' : 'height'} /> */}
  </KeyboardAvoidingView>
 </View>
-
+</KeyboardAwareScrollView>
   );
 }
 
