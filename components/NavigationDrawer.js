@@ -87,7 +87,9 @@ const NavigationDrawer = () => {
               <View className="border-b border-slate-300 my-2">
                 <Text className={`text-xl font-bold text-white mb-2`}>Settings</Text>
 
-                <TouchableOpacity className="py-1.5 px-3 my-1.5 bg-slatee-500 flex flex-row justify-between active:bg-slate-500  hover:bg-slate-500 rounded-lg">
+                <TouchableOpacity className="py-1.5 px-3 my-1.5 bg-slatee-500 flex flex-row justify-between active:bg-slate-500  hover:bg-slate-500 rounded-lg"
+                  onPress={()=> navigation.navigate("NewDoctor") }
+                >
                  <Text className={`text-white font-medium text-sm ${Platform.select({android : 'text-xs'})}`} >Doctor Registration</Text>
                  <Text className="mt-0.5">
                    <AntDesign name='arrowright' size={18} color="white" />
