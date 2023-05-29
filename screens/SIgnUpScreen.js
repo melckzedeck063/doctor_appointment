@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useForm, FormProvider, SubmitHandler, Controller } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
-
+import  {responsiveHeight} from 'react-native-responsive-dimensions'
 
 
 const SIgnUpScreen = () => {
@@ -44,7 +44,7 @@ const SIgnUpScreen = () => {
 
 
   return (
-    <View className="bg-cyan-600">
+    <View style={{height : responsiveHeight(100)}} className="bg-cyan-600">
       <KeyboardAwareScrollView >
     {/* <View > */}
       <ScrollView className='bg-cyan-600'>
@@ -53,7 +53,7 @@ const SIgnUpScreen = () => {
       <View style={{alignSelf : 'center'}} className="bg-slate-200 shadow-md rounded-lg px-4 py-5 w-10/12 my-3">
            <Text className={`text-2xl font-medium text-cyan-600 text-center ${Platform.select({android : 'text-xl'})}`} >Sign Up</Text>
       <View className="my-2">
-       <Text className={`text-lg text-cyan-600 ${Platform.select({android : 'text-sm'})}`} >FirstName</Text>
+       <Text className={`text-lg text-cyan-600 ${Platform.select({android : 'text-sm'})}`} >First Name</Text>
         <Controller
         control={control}
         rules={{
@@ -73,7 +73,7 @@ const SIgnUpScreen = () => {
       {  errors.firstName && <Text className="text-red-400" > {errors.firstName.message} </Text>}
       </View>
       <View className="my-2">
-      <Text className={`text-lg text-cyan-600 ${Platform.select({android : 'text-sm'})}`} >LastName</Text>
+      <Text className={`text-lg text-cyan-600 ${Platform.select({android : 'text-sm'})}`} >Last Name</Text>
     <Controller
         control={control}
         rules={{

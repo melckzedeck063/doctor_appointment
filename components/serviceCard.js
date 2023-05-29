@@ -4,7 +4,7 @@ import { useWindowDimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 
-const CategoryCard = (props) => {
+const ServiceCard = (props) => {
 
     const {height, width} =  useWindowDimensions();
     const navigation =  useNavigation();
@@ -15,15 +15,15 @@ const CategoryCard = (props) => {
         props
       }) }
     >
-      <View  className="bg-cyan-600 p-2 rounded-full">
-        <Image source={props.image} className="h-24 w-24 p-0.5 rounded-full border-2 border-slate-600"  />
+      <View  className="bg-cyan-600 p-2 rounded-lg">
+        <Image source={props.image} className="h-24 w-28 overflow-hidden"  />
       </View>
-      <Text style={{fontSize : responsiveFontSize(1.6)}} className={`text-white font-medium capitalize ${Platform.select({android : 'text-sm'})}`} > {props.name} </Text>
+      <Text style={{fontSize : responsiveFontSize(1.6)}} className={`text-slate-700 font-medium capitalize ${Platform.select({android : 'text-sm'})}`} > {props.name} </Text>
     </TouchableOpacity>
   )
 }
 
-export default CategoryCard
+export default ServiceCard
 
 const style = StyleSheet.create({
     card: {

@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useForm, Controller, useController, useWatch } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 import  { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 // import * as Yup from 'yup';
 
 
@@ -44,12 +45,12 @@ const LoginScreen = () => {
     })
 
   return (
-    <View>
+    <View style={{height : responsiveHeight(100)}} className="bg-cyan-600">
       <KeyboardAwareScrollView>
       <ScrollView>
 
            {/* <LinearGradient colors={['transparent', '#F54749']} > */}
-           <View className={`bg-cyan-600 w-full h-full ${height < 300 ? 'py-2' : 'py-6'} ${Platform.select({ios : 'pb-96', android : "pb-56"})}`}>
+           <View className={`w-full h-full ${height < 300 ? 'py-2' : 'py-6'} ${Platform.select({ios : 'pb-96', android : "pb-56"})}`}>
           {/* <Text className={`text-white text-center font-medium text-3xl ${height < 400 ? 'mt-1' : 'mt-24'} `}>Login Screen</Text> */}
         <View className={`mx-auto shadow-md bg-slate-100 rounded-lg ${height < 400 ? 'mt-32 py-1' : 'py-6 mt-52'} ${width < 400 ? 'w-10/12' : 'w-9/12'} px-6`}  style={{alignSelf : 'center'}} >
       <Text className="text-2xl font-medium text-cyan-600 text-center" >Sign In</Text>
@@ -110,7 +111,7 @@ const LoginScreen = () => {
              <TouchableOpacity className="bg-cyan-600 rounded-md px-2 py-1 my-3"
                onPress={handleSubmit(onSubmit)}
              >
-                <Text className={`text-2xl font-medium text-white text-center ${Platform.select({android : 'text-xl'})}`} >Sign In</Text>
+                <Text className={`text-2xl font-medium text-white text-center ${Platform.select({android : 'text-xl'})}`} >Submit</Text>
              </TouchableOpacity>
         </View>
         <View>

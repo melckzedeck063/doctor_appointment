@@ -13,6 +13,7 @@ import AllDoctors from './screens/AllDoctorsScreen';
 import AllCategories from './screens/AllCategories';
 import AppointmentDetails from './screens/AppointmentDetails';
 import MessageScreen from './screens/MessageScreen';
+import CategoryForm from './screens/CategoryForm';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,9 @@ export default function App() {
              />
              <Stack.Screen name="AllCategories" component={AllCategories} 
                 options={{title  :  'All Categories'}}
+             />
+            <Stack.Screen name="NewCategory" component={CategoryForm} 
+                options={{title  :  'New Service'}}
              />
              <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} 
                 options={{title  :  'Appointment Details'}}

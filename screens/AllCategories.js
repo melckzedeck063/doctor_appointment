@@ -9,7 +9,7 @@ import image4 from '../assets/images/pexels-thirdman-7659874.jpg';
 // import categoryCard from '../components/categoryCard';
 
 import { SafeAreaView } from 'react-native-safe-area-context'
-import CategoryCard from '../components/CategoriesCard';
+import ServiceCard from '../components/serviceCard';
 
 const categories =  [
     {name : "Heart diseases", image :image1, id : 1 },
@@ -47,7 +47,7 @@ const AllCategories = () => {
           numColumns={3} 
           renderItem={(itemData) => {
             return(
-                <CategoryCard name={itemData.item.name} image={itemData.item.image}  />
+                <ServiceCard name={itemData.item.name} image={itemData.item.image}  />
             )
           }}
           keyExtractor={(item) =>item.id }

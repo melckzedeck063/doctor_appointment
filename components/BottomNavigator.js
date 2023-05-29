@@ -62,7 +62,7 @@ export default function BottomNavigator() {
           tabBarInactiveTintColor: '#fecaca',
           tabBarActiveTintColor: 'white',
           tabBarStyle : {
-            backgroundColor : '#0891b2',
+            backgroundColor : '#008494',
             opacity : 0.98
           }
           // tabBarBackground : {
@@ -77,7 +77,7 @@ export default function BottomNavigator() {
         //   options={{ tabBarBadge: 3 }}
         />
         {/* <Tab.Screen name="Cart" component={CartScreen} options={{ tabBarBadge: 3 }} /> */}
-        <Tab.Screen name="Appointments" component={AppointmentScreen} options={{ tabBarBadge: 3 }} />
+        <Tab.Screen name="Appointments" component={AppointmentScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
     // </NavigationContainer>

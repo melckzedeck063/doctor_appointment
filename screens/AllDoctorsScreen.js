@@ -1,6 +1,7 @@
 import { View, Text, useWindowDimensions, FlatList } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import {responsiveHeight, responsiveWidth, responsiveFontSize} from 'react-native-responsive-dimensions'
 
 import image1 from '../assets/images/pexels-shvets-production-8413184.jpg';
 import image2 from '../assets/images/pexels-alexander-zvir-9062164.jpg';
@@ -38,11 +39,11 @@ const AllDoctors = () => {
     return (
 
 
-    <View style={{width : width, height : height, marginBottom : 20}} className="bg-white mb-6">
+    <View style={{width : width, height : height, marginBottom : 10}} className="bg-white mb-6">
         <View style={{alignSelf : 'center'}} className="border-slate-400 border-b-2 w-10/12" >           
-            <Text className="text-lg text-cyan-600 text-center font-bold py-3" >All Doctors</Text>
+            <Text className="text-lg text-cyan-600 text-center font-bold py-2" ></Text>
         </View>
-        <View  className="my-4 mb-10">
+        <View style={{height  :responsiveHeight(85)}} className="my-1 mb-10">
             {doctors && doctors.length > 1 ?
           <>
           <FlatList 
@@ -51,7 +52,6 @@ const AllDoctors = () => {
            style={{
             padding : 3,
             marginBottom : 12,
-            height : height/1.3
            }}
            renderItem = {(itemData) => {
             return (

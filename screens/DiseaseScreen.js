@@ -48,7 +48,7 @@ const DiseaseScreen = () => {
       </View>
 
      <View className="mx-2 px-2 mb-3">
-        <Text className={`font-bold capitalize text-cyan-600 text-xl py-2 ${Platform.select({android : 'text-lg'})}`}>{props.name}</Text>
+        <Text className={`font-bold capitalize text-cyan-600 mt-1 text-xl py-2 ${Platform.select({android : 'text-lg'})}`}>{props.name}</Text>
         <Text className={`font-mediumm capitalize text-cyann-600 px-2 ${Platform.select({android : 'text-xs'})}`}> 
          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quam suscipit veniam ut doloremque quas, reprehenderit commodi deserunt 
          perferendis ducimus ullam fuga sequi optio laboriosam quaerat ipsum asperiores eius nemo.
