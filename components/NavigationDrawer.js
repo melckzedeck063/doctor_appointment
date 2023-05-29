@@ -57,7 +57,9 @@ const NavigationDrawer = () => {
                    <AntDesign name='arrowright' size={18} color="white" />
                  </Text>
               </TouchableOpacity>
-              <TouchableOpacity className="py-1.5 px-3 my-1.5 bg-slatee-500 flex flex-row justify-between space-x-6 active:bg-slate-500  hover:bg-slate-500 rounded-lg">
+              <TouchableOpacity className="py-1.5 px-3 my-1.5 bg-slatee-500 flex flex-row justify-between space-x-6 active:bg-slate-500  hover:bg-slate-500 rounded-lg"
+                  onPress={()  => navigation.navigate('ChatList') }
+              >
                  <Text className={`text-white font-medium text-sm ${Platform.select({android : 'text-xs'})}`} >Chats</Text>
                  <Text className="mt-0.5">
                    <AntDesign name='arrowright' size={18} color="white" />

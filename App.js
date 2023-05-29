@@ -16,6 +16,7 @@ import MessageScreen from './screens/MessageScreen';
 import CategoryForm from './screens/CategoryForm';
 import DoctorForm from './screens/DoctorForm';
 import SettingsScreen from './screens/SettingScreen';
+import MessageListScreen from './screens/ChatListScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +71,9 @@ export default function App() {
              />
              <Stack.Screen name="Message" component={MessageScreen} 
                 options={{title  :  'Message Screen'}}
+             />
+            <Stack.Screen name="ChatList" component={MessageListScreen} 
+                options={{title  :  'My Chats'}}
              />
             <Stack.Screen name="Settings" component={SettingsScreen} 
                 options={{title  :  'Settings Screen'}}
