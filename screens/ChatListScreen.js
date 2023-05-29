@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import ChatCard from '../components/chatCard';
+import { responsiveHeight } from 'react-native-responsive-dimensions';
 
 const MessageListScreen = () => {
   const messages = [
@@ -18,58 +19,23 @@ const MessageListScreen = () => {
     },
     {
         id: 3,
-        sender: 'John',
+        sender: 'Melckzedeck',
         message: 'Hey, how are you?',
         timestamp: '10:30 AM',
       },
       {
         id: 4,
-        sender: 'Jane',
+        sender: 'Pracsidesy',
         message: 'I\'m doing great, thanks!',
         timestamp: '10:35 AM',
       },
-      {
-        id: 5,
-        sender: 'John',
-        message: 'Hey, how are you?',
-        timestamp: '10:30 AM',
-      },
-      {
-        id: 6,
-        sender: 'Jane',
-        message: 'I\'m doing great, thanks!',
-        timestamp: '10:35 AM',
-      },
-      {
-        id: 7,
-        sender: 'John',
-        message: 'Hey, how are you?',
-        timestamp: '10:30 AM',
-      },
-      {
-        id: 8,
-        sender: 'Jane',
-        message: 'I\'m doing great, thanks!',
-        timestamp: '10:35 AM',
-      },
-      {
-        id: 9,
-        sender: 'John',
-        message: 'Hey, how are you?',
-        timestamp: '10:30 AM',
-      },
-      {
-        id: 10,
-        sender: 'Jane',
-        message: 'I\'m doing great, thanks!',
-        timestamp: '10:35 AM',
-      },
+     
     // Add more messages here
   ];
 
   return (
     <View className={`flex-1 bg-white`}>
-      <View className={`flex-1 p-4`}>
+      <View style={{height : responsiveHeight(90)}} className={`flex-1 p-4`}>
         {
             messages ? (
                 <>
