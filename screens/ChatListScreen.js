@@ -19,7 +19,7 @@ const MessageListScreen = () => {
     },
     {
         id: 3,
-        sender: 'Melckzedeck',
+        sender: 'Mayele',
         message: 'Hey, how are you?',
         timestamp: '10:30 AM',
       },

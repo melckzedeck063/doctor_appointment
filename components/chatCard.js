@@ -2,10 +2,15 @@ import { View, Text,TouchableOpacity,Image, StyleSheet } from 'react-native'
 import React from 'react'
 import image1 from '../assets/images/pexels-shvets-production-8413184.jpg';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ChatCard(props) {
+
+    const navigation =   useNavigation();
   return (
-    <TouchableOpacity style={style.card} className='my-1 rounded-lg' >
+    <TouchableOpacity style={style.card} className='my-1 rounded-lg' 
+       onPress={() => navigation.navigate('ChatScreen')}
+    >
       <View className={`mb-4`}>
       <View className={`flex-row items-center mb-1 px-1`}>
         <View className="mt-2">

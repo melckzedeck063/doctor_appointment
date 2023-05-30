@@ -190,7 +190,7 @@ const AppointmentDetails = () => {
         </View>
 
         <TouchableOpacity style={{alignSelf : 'center'}} className="bg-cyan-600 rounded-lg w-10/12 h-12 px-4 pt-1 my-6">
-         <Text className={`font-bold text-white text-center mt-1 text-lg ${Platform.select({android : 'text-sm'})}`}>Book  an Appointment</Text>
+         <Text className={`font-bold text-white text-center mt-1 text-lg ${Platform.select({android : 'text-sm'})}`}>Reschedule</Text>
       </TouchableOpacity>
 
     </ScrollView>

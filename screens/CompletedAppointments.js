@@ -12,15 +12,15 @@ import image from '../assets/images/pexels-thirdman-7659874.jpg'
 import CustomMaterialTopTab from '../components/TopNavigation';
 
 const doctors =  [
-    {name : "James Cotton", image :image1, id : 1 },
+  {name : "Whitney Humphrey", image : image4 , id : 4},
   {name : "Joshua Francis", image :image2, id : 2 },
   {name : "Hamilton Partey", image :image3, id: 3 },
-  {name : "Whitney Humphrey", image : image4 , id : 4},
+  {name : "James Cotton", image :image1, id : 1 },
   {name : "Miranda Johnson", image :image1, id: 5 },
   {name : "Ezekiel Michael", image :image2, id : 6 },
 ]
 
-const AppointmentScreen = () => {
+const CompletedAppointments = () => {
 
     const  navigation =  useNavigation();
 
@@ -40,7 +40,7 @@ const AppointmentScreen = () => {
       <View className="my-2 mx-2">
         <CustomMaterialTopTab  />
       </View>
-      <View style={{height : responsiveHeight(75)}}  className={``}>
+      <View style={{height : responsiveHeight(80)}}  className={``}>
 
       <FlatList
          data={doctors}
@@ -58,4 +58,4 @@ const AppointmentScreen = () => {
   )
 }
 
-export default AppointmentScreen
+export default CompletedAppointments

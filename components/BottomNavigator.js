@@ -78,6 +78,7 @@ export default function BottomNavigator() {
         />
         {/* <Tab.Screen name="Cart" component={CartScreen} options={{ tabBarBadge: 3 }} /> */}
         <Tab.Screen name="Appointments" component={AppointmentScreen} />
+        {/* <Tab.Screen name="Completed" component={CompletedAppointments} /> */}
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
     // </NavigationContainer>

@@ -17,6 +17,7 @@ import CategoryForm from './screens/CategoryForm';
 import DoctorForm from './screens/DoctorForm';
 import SettingsScreen from './screens/SettingScreen';
 import MessageListScreen from './screens/ChatListScreen';
+import ChatScreen from './screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,10 +70,16 @@ export default function App() {
              <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} 
                 options={{title  :  'Appointment Details'}}
              />
+            <Stack.Screen name="Completed" component={CompletedAppointments} 
+                options={{title  :  'Appointments'}}
+             />
              <Stack.Screen name="Message" component={MessageScreen} 
                 options={{title  :  'Message Screen'}}
              />
             <Stack.Screen name="ChatList" component={MessageListScreen} 
+                options={{title  :  'Messages'}}
+             />
+            <Stack.Screen name="ChatScreen" component={ChatScreen} 
                 options={{title  :  'My Chats'}}
              />
             <Stack.Screen name="Settings" component={SettingsScreen} 
@@ -102,3 +109,36 @@ export const  HomeTab = () => {
   )
 }
 
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import CompletedAppointments from './screens/CompletedAppointments';
+
+const Tab = createMaterialTopTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Feed"
+      screenOptions={{
+        tabBarActiveTintColor: '#e91e63',
+        tabBarLabelStyle: { fontSize: 12 },
+        tabBarStyle: { backgroundColor: 'powderblue' },
+      }}
+    >
+      <Tab.Screen
+        name="Feed"
+        component={Feed}
+        options={{ tabBarLabel: 'Home' }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={Notifications}
+        options={{ tabBarLabel: 'Updates' }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{ tabBarLabel: 'Profile' }}
+      />
+    </Tab.Navigator>
+  );
+}
