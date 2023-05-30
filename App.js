@@ -70,6 +70,12 @@ export default function App() {
              <Stack.Screen name="AppointmentDetails" component={AppointmentDetails} 
                 options={{title  :  'Appointment Details'}}
              />
+            <Stack.Screen name="Checkout" component={CheckoutScreen} 
+                options={{title  :  'Checkout Details'}}
+             />
+            <Stack.Screen name="Schedule" component={AppointmentSchedule} 
+                options={{title  :  'Schedule Appointment'}}
+             />
             <Stack.Screen name="Completed" component={CompletedAppointments} 
                 options={{title  :  'Appointments'}}
              />
@@ -111,6 +117,8 @@ export const  HomeTab = () => {
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import CompletedAppointments from './screens/CompletedAppointments';
+import AppointmentSchedule from './screens/AppointmentSchedule';
+import CheckoutScreen from './screens/CheckoutScreen';
 
 const Tab = createMaterialTopTabNavigator();
 
