@@ -5,13 +5,16 @@ import { useForm, Controller, useController, useWatch } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 import  { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import { responsiveHeight } from 'react-native-responsive-dimensions';
-// import * as Yup from 'yup';
+import * as SecureStore from 'expo-secure-store'
+import { useDispatch } from 'react-redux';
+import { signInUser } from '../store/actions/user_actions';
 
 
 
 const LoginScreen = () => {
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions();
+    const dispatch =  useDispatch();
 
 
     const {  handleSubmit,setValue, control, reset, formState: { errors, isValid, isDirty } } = useForm({
@@ -23,14 +26,44 @@ const LoginScreen = () => {
         reValidateMode : "onChange"
       })
 
-      const onSubmit = data => {
-        console.log(data)
-        navigation.navigate('HomeTab')
+      const checkUser = async () =>  {
+        const storage = await  SecureStore.getItemAsync('token');
+       const authToken =  JSON.parse(storage)
+      //  console.log(authToken)
+        if(authToken !== "" && authToken !==  undefined && authToken !== null){
+            // console.log(authToken)
+            // setTimeout(() => {
+            //   if(reload < 3){
+            //     setModalVisible(true)
+            //   }
+            // }, 1000);
+            setTimeout(() => {
+              navigation.navigate('HomeTab');
+            }, 3000);
+          }
+          else {
+            console.log("nothing to connsole")
+          }
       }
-
-      setTimeout(() => {
-        navigation.navigate('HomeTab')
-      }, 2500);
+        
+  
+        const onSubmit = data => {
+          // console.log(data)
+          dispatch( signInUser(data))
+          setTimeout(() => {
+            // reset()
+          }, 500);
+  
+          setTimeout(() => {
+            checkUser()
+          }, 4000)
+  
+        }
+  
+        setTimeout(() => {
+          checkUser()
+          //  navigation.navigate('HomeTab');
+        }, 3000);
 
       
       useLayoutEffect(() => 
@@ -72,10 +105,8 @@ const LoginScreen = () => {
             onBlur={onBlur}
             onChangeText={onChange}
             autoCapitalize ={false}
-            // autoComplete='email'
+            autoComplete='email'
             value={value}
-            // errors = {errors.name}
-            // errorText = {errors?.name?.message}
           />
         )}
         name="username"

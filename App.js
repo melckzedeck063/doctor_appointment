@@ -18,13 +18,18 @@ import DoctorForm from './screens/DoctorForm';
 import SettingsScreen from './screens/SettingScreen';
 import MessageListScreen from './screens/ChatListScreen';
 import ChatScreen from './screens/ChatScreen';
+import {store} from './store/store'
+
+import {Provider} from 'react-redux'
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-     <NavigationContainer>
-      <StatusBar style='light' />
+    <>
+    <StatusBar style='light' />
+    <Provider store={store}>
+      <NavigationContainer>
          <Stack.Navigator
                screenOptions={{
                 headerStyle: {
@@ -91,8 +96,13 @@ export default function App() {
             <Stack.Screen name="Settings" component={SettingsScreen} 
                 options={{title  :  'Settings Screen'}}
              />
+             <Stack.Screen name="DiseaseCategories" component={DiseaseCategories} 
+                options={{title  :  'All  Diseases'}}
+             />
          </Stack.Navigator>
      </NavigationContainer>
+     </Provider>
+     </>
   );
 }
 
@@ -119,6 +129,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import CompletedAppointments from './screens/CompletedAppointments';
 import AppointmentSchedule from './screens/AppointmentSchedule';
 import CheckoutScreen from './screens/CheckoutScreen';
+import DiseaseCategories from './screens/DiseaseCategories';
 
 const Tab = createMaterialTopTabNavigator();
 

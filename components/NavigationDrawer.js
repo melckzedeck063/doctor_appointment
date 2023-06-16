@@ -16,7 +16,7 @@ const NavigationDrawer = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
      {/* <Text className="text-white">Drawer Content</Text> */}
-     <View className="my-1 pt-14 mb-10 ">
+     <View className={`my-1 pt-10 mb-10`}>
 
      <View className="border-b border-slate-300 my-2">
                 <Text className={`text-lg font-bold text-white`}>Doctors & Services</Text>
@@ -90,7 +90,7 @@ const NavigationDrawer = () => {
                 <Text className={`text-xl font-bold text-white mb-2`}>Settings</Text>
 
                 <TouchableOpacity className="py-1.5 px-3 my-1.5 bg-slatee-500 flex flex-row justify-between active:bg-slate-500  hover:bg-slate-500 rounded-lg"
-                  onPress={()=> navigation.navigate("NewDoctor") }
+                  onPress={()=> navigation.navigate("DiseaseCategories") }
                 >
                  <Text className={`text-white font-medium text-sm ${Platform.select({android : 'text-xs'})}`} >Doctor Registration</Text>
                  <Text className="mt-0.5">

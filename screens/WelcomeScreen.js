@@ -3,6 +3,7 @@ import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import image1 from '../assets/images/pexels-thirdman-7659874.jpg';
 import {LinearGradient} from 'expo-linear-gradient'
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
 const WelcomeScreen = () => {
     const  navigation =  useNavigation();
@@ -36,7 +37,7 @@ const WelcomeScreen = () => {
                     <TouchableOpacity
                        onPress={() => navigation.navigate('Login') }
                     style={{alignSelf : 'center'}} className={`bg-sky-500 px-4 py-2 rounded-lg w-6/12 my-4`}>
-                        <Text className={`text-lg font-bold text-center text-white`}> Let's Start </Text>
+                        <Text style={{fontSize : responsiveFontSize(2)}} className={`font-bold text-center text-white`}> Let's Start </Text>
                     </TouchableOpacity>
                  </View>
             </View>

@@ -10,6 +10,7 @@ import image2 from '../assets/images/pexels-alexander-zvir-9062164.jpg';
 import image3 from '../assets/images/pexels-mix-and-match-studio-4227112.jpg';
 import image4 from '../assets/images/pexels-thirdman-7659874.jpg';
 import ProductCard from '../components/ProductCard'
+import { IMAGE_URL } from '../store/URL'
 
 
   const doctors =  [
@@ -40,7 +41,7 @@ const DiseaseScreen = () => {
      {/* <ScrollView   > */}
      <View className="bg-slate-200 h-full">
      <View className="relative">
-        <Image style={{height : height/3}} source={props.image} className="w-full" />
+        <Image style={{height : height/3}} source={{uri  : `${IMAGE_URL}/${props.image}`}} className="w-full" />
         <View className='absolute inset-0 bg-black/60' ></View>
         <View className="absolute bottom-2 px-2">
             {/* <Text className={`font-bold my-1.5 text-2xl capitalize text-cyan-600 ${Platform.select({android : 'text-xl'})}`}>{props.name}</Text> */}

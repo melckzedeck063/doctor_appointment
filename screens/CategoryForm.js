@@ -8,27 +8,28 @@ import * as ImagePicker from 'expo-image-picker';
 import { Ionicons}  from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 // import {makeNewProduct } from '../store/reduxStore/actions/product_actions';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import  {responsiveHeight,responsiveWidth} from 'react-native-responsive-dimensions';
 import { useWindowDimensions } from 'react-native';
-// import { BASE_URL } from '../store/URL';
+import { BASE_URL } from '../store/URL';
+import { registerDisease } from '../store/actions/category_actions';
 
 
 const CategoryForm = () => {
     
   const [image, setImage] =   useState(null);
   const [imageData, setImageData] =  useState("")
-//   const dispatch =  useDispatch();
+  const dispatch =  useDispatch();
 
 
  
 
     const { register, handleSubmit, reset, control, formState : {errors} } =  useForm({
         defaultValues  : {
-            serviceName : '',
+            diseaseName : '',
             price : '',
         },
         mode : 'all'
@@ -56,8 +57,9 @@ const CategoryForm = () => {
       if (!result.canceled) {
         setImageData(result.data)
         setImage(result)
-        let localUri = result.uri;
-        let filename = localUri.split('/').pop();
+        let selectedAsset = result.assets[0]; // Assuming you want to upload the first selected asset
+        let localUri = selectedAsset.uri;
+        let filename = localUri.split('/').pop()
         let match = /\.(\w+)$/.exec(filename);
         let type = match ? `image/${match[1]}` : `image`;
         let formData = new FormData();
@@ -74,8 +76,14 @@ const CategoryForm = () => {
         // const response =  
                          
         return fetch(`${BASE_URL}/posts/upload_photo`, options)
-                    .then((response) => response.json())
-                    .then( (data) => setImageData(data.data) )
+        .then((response) => response.json())
+        .then( (data) => {
+          console.log(data)
+          setImageData(data.data) 
+
+          const uploadedImageUrl = data.url;
+          console.log('Uploaded Image URL:', uploadedImageUrl);
+      })
                     
       }
     } catch(e) {
@@ -86,10 +94,9 @@ const CategoryForm = () => {
 
     const onSubmit = data => {
       data.photo = imageData
-    //   data.laundry =  props.id
-      console.log(data)
+      // console.log(data)
       
-    //   dispatch( registerService(data) )
+      dispatch( registerDisease(data) )
 
       reset()
     }
@@ -109,7 +116,7 @@ const CategoryForm = () => {
                 <View className="relative">
                     <View className="mb-1">
                       <Text   className="text-center font-bold text-lg text-slate-700" >
-                        Register Your Service
+                        Register Disease
                       </Text>
                     </View>
      <View style={{alignSelf : 'center'}} className={`bg-white shadow-md rounded-lg px-4 py-3 w-10/12 my-20 ${height <=  700 ? 'py-2' :  ''} `}>
@@ -117,26 +124,26 @@ const CategoryForm = () => {
       {/* <Text className={`text-xl text-center font-medium text-slate-800 my-1 -mt-1 ${Platform.select({android :  'text-lg'})}`} > product</Text> */}
       
       <View className="my-2">
-       <Text className={`text-xl text-slate-600 ${Platform.select({android : 'text-sm'})}`} >Service Offered</Text>
+       <Text className={`text-xl text-slate-600 ${Platform.select({android : 'text-sm'})}`} >Disease  Name</Text>
         <Controller
         control={control}
         rules={{
             required: {value : true, message : "product name is required"},
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android : 'py-1.5'})} border-2 ${errors.serviceName? 'border-red-500' :  'border-slate-300'}`}
-          placeholder="Enter product name"
+          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android : 'py-1.5'})} border-2 ${errors.diseaseNameName? 'border-red-500' :  'border-slate-300'}`}
+          placeholder="Enter disease name"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="serviceName"
+        name="diseaseName"
       />
       </View>
 
       <View className="my-4">
-      <Text className={`text-xl text-slate-600 ${Platform.select({android : 'text-sm'})}`} >Product Photo</Text>
+      <Text className={`text-xl text-slate-600 ${Platform.select({android : 'text-sm'})}`} >Upload Photo</Text>
       <View  className="px-2 bg-slate-100">
          <Button className="text-red-50 text-2xl"  title="Pick an image" onPress={pickImage} />
          {image && <Image className="rounded-full" source={{ uri: image.uri }} style={{ width: 160, height: 160, alignSelf : 'center' }} />}

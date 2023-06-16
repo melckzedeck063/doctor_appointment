@@ -94,7 +94,7 @@ const DoctorForm = () => {
     const onSubmit = data => {
       data.photo = imageData
     //   data.category =  props.id
-    //   console.log(data)
+      console.log(data)
       
     //   dispatch( createLaundry(data) )
 
@@ -131,14 +131,32 @@ const DoctorForm = () => {
             required: {value : true, message : "license number is required"},
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android : 'py-1.5'})} border-2 ${errors.regNo? 'border-red-500' :  'border-slate-300'}`}
+          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android : 'py-1.5'})} border-2 ${errors.licenseNo? 'border-red-500' :  'border-slate-300'}`}
           placeholder="Enter license number"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="regNo"
+        name="licenseNo"
+      />
+      </View>
+      <View className="my-2">
+       <Text className={`text-xl text-slate-600 ${Platform.select({android : 'text-sm'})}`} >Check No</Text>
+        <Controller
+        control={control}
+        rules={{
+            required: {value : true, message : "license number is required"},
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android : 'py-1.5'})} border-2 ${errors.checkNo? 'border-red-500' :  'border-slate-300'}`}
+          placeholder="Enter check number"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="checkNo"
       />
       </View>
 

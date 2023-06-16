@@ -5,14 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import { IMAGE_URL } from '../store/URL';
 
-const CategoryCard = (props) => {
+const DiseaseCard = (props) => {
 
     const {height, width} =  useWindowDimensions();
     const navigation =  useNavigation();
 
   return (
     <TouchableOpacity className="mx-1.5" 
-    onPress={() => navigation.navigate('Disease', {
+    onPress={() => navigation.navigate('NewDoctor', {
         props
       }) }
     >
@@ -24,7 +24,7 @@ const CategoryCard = (props) => {
   )
 }
 
-export default CategoryCard
+export default DiseaseCard
 
 const style = StyleSheet.create({
     card: {

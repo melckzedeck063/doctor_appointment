@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, useWindowDimensions,TextInput, StyleSheet, ScrollView, FlatList, Platform ,TouchableWithoutFeedback} from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/core'
 import {Controller, useForm} from 'react-hook-form'
 import { Ionicons, FontAwesome, FontAwesome5, Entypo, MaterialCommunityIcons, MaterialIcons }  from '@expo/vector-icons'
@@ -16,6 +16,9 @@ import ProductCard from '../components/ProductCard';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CategoryCard from '../components/CategoriesCard'
 import NavigationDrawer from '../components/NavigationDrawer'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllDiseases } from '../store/actions/category_actions'
+import CategorySkeleton from '../components/categorySkeleton'
 
 const categories =  [
   {name : "Heart diseases", image :image1, id : 1 },
@@ -40,14 +43,29 @@ const HomeScreen = () => {
     const navigation =  useNavigation();
     const {height, width} =  useWindowDimensions()
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const dispatch  =  useDispatch();
+    const [reload,setReload] =  useState(0);
+
+    const diseases = useSelector(state => state.disease);
+
+    // console.log(diseases.diseases);
 
     const handleOutsidePress = (event) => {
       setIsDrawerOpen(false);
       // console.log('clicked')
     };
+ setTimeout(() => {
+   if(reload <=5 ){
+    setReload(reload => reload +1);
+   }
+ }, 1000);   
 
-    // console.log(isDrawerOpen);
-   
+
+ useEffect(()  =>  {
+  if(diseases && diseases.diseases && reload < 4){
+    dispatch( getAllDiseases() )
+  }
+ })
 
     useLayoutEffect(() => 
     {
@@ -72,7 +90,7 @@ const HomeScreen = () => {
     >
     <View style={{ height : height, width : width}} className={`bg-cyan-600 text-white relative pxx-1`}>
       <SafeAreaView className="bg-teal" />
-      <View style={{height : responsiveHeight(28)}} className={`px-4 -mt-4 ${height<=500?Platform.select({android : 'mt-4'}) :height>700?Platform.select({android : 'mt-8'}) :Platform.select({android : 'mt-8'})}`} >
+      <View style={{height : responsiveHeight(32)}} className={`px-4 -mt-8 ${height<=500?Platform.select({android : 'mt-4'}) :height>700?Platform.select({android : 'mt-8'}) :Platform.select({android : 'mt-8'})}`} >
         <View className="flex-row justify-between ">
         <View className="" >
            <Text style={{fontSize: responsiveFontSize(2)}} className={`font-bold text-white`}>Hello! John Doe</Text>
@@ -118,31 +136,46 @@ const HomeScreen = () => {
       </View>
       <View>
       </View>
-        
-        <FlatList className="mt-4"
-         data={categories}
-         horizontal = {true}
-         showsHorizontalScrollIndicator ={false}
-         contentContainerStyle = {{
-           paddingHorizontal : 1,
-           paddingVertical : 5
-         }}
-         renderItem={(itemData) => {
-           return (
-              <CategoryCard name={itemData.item.name} image={itemData.item.image}  />
-           )
-         }}
-         keyExtractor={(item) => item.id}
-        />
+        <View   className="">
+          {
+            diseases?.diseases?.data?.data.length >= 1?(
+              <>
+            <FlatList className="mt-4"
+             data={diseases.diseases.data.data}
+             horizontal = {true}
+             showsHorizontalScrollIndicator ={false}
+             contentContainerStyle = {{
+               paddingHorizontal : 1,
+               paddingVertical : 5
+             }}
+             renderItem={(itemData) => {
+               return (
+                  <CategoryCard name={itemData.item.diseaseName} image={itemData.item.photo} id={itemData.item._id} />
+               )
+             }}
+             keyExtractor={(item) => item._id}
+            />
+              </>
+            )
+            :
+            <>
+             <View className="flex flex-row justify-between mt-4">
+               <CategorySkeleton />
+               <CategorySkeleton />
+               <CategorySkeleton />
+             </View>
+            </>
+          }
+        </View>
      
           </View>
         </View>
       </View>
 
-      <View className={`bg-white  rounded-t-3xl mt-4 w-full`}>
+      <View className={`bg-white  rounded-t-3xl mt-4 ${height > 780 ?Platform.select({ios : '-mt-2'}) : ''} w-full`}>
       
 
-      <View style={{height  : responsiveHeight(48)}} className={` mb-1.5 mt-1 ${height> 750? 'mt-2' : 'mt-1'} ${height > 700 ?Platform.select({android : 'mt-1'}) : ''}`} >
+      <View style={{height  : responsiveHeight(49)}} className={` mb-1.5 mt-1 ${height> 750? 'mt-2' : 'mt-1'} ${height > 700 ?Platform.select({android : 'mt-1'}) : ''}`} >
         <View style={style.container} className="mt-3">
          <View className="flex-row justify-between -mt-1 mx-1" >
           <View>
