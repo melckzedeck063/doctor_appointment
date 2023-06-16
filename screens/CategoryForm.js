@@ -30,7 +30,7 @@ const CategoryForm = () => {
     const { register, handleSubmit, reset, control, formState : {errors} } =  useForm({
         defaultValues  : {
             diseaseName : '',
-            price : '',
+            description : '',
         },
         mode : 'all'
     });
@@ -162,14 +162,15 @@ const CategoryForm = () => {
          required: true,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android  :'py-1.5'})} ${errors.price ? 'border-2  border-red-500' : 'border-2 border-slate-300'}`}
-          placeholder="Enter price"
+          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android  :'py-1.5'})} ${errors.description ? 'border-2  border-red-500' : 'border-2 border-slate-300'}`}
+          placeholder="Enter description"
             onBlur={onBlur}
+            multiline={true}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="price"
+        name="description"
       />
             </View>
      

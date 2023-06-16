@@ -1,34 +1,42 @@
 import { View, Text, Image, useWindowDimensions, TouchableOpacity, ScrollView, Platform, FlatList } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import {useResponsiveHeight, useResponsiveWidth, useResponsiveFontSize} from 'react-native-responsive-dimensions'
 
-import image1 from '../assets/images/pexels-shvets-production-8413184.jpg';
-import image2 from '../assets/images/pexels-alexander-zvir-9062164.jpg';
-import image3 from '../assets/images/pexels-mix-and-match-studio-4227112.jpg';
-import image4 from '../assets/images/pexels-thirdman-7659874.jpg';
 import ProductCard from '../components/ProductCard'
 import { IMAGE_URL } from '../store/URL'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCategoryDoctors } from '../store/actions/doctor_actions'
+import ProductSkeleton from '../components/productSkeleton'
 
-
-  const doctors =  [
-    {name : "James Cotton", image :image1, id : 1 },
-  {name : "Joshua Francis", image :image2, id : 2 },
-  {name : "Hamilton Partey", image :image3, id: 3 },
-  {name : "Whitney Humphrey", image : image4 , id : 4},
-  {name : "Miranda Johnson", image :image1, id: 5 },
-  {name : "Ezekiel Michael", image :image2, id : 6 },
-  ]
 
 const DiseaseScreen = () => {
 
     const navigation =  useNavigation();
     const {params : {props}} =  useRoute();
     const {width, height} =  useWindowDimensions();
+    const [reload,setReload] = useState(0);
+    const dispatch =  useDispatch();
 
-    console.log(props);
+
+    setTimeout(() => {
+      if(reload <= 5){
+        setReload(reload => reload + 1)
+      }
+    }, 1000);
+
+    const doctors =  useSelector(state =>state.doctor);
+    // console.log(doctors.category_doctors);
+
+    // console.log(props);
+
+  useEffect(()  => {
+    if(doctors && doctors.category_doctors && reload <4){
+      dispatch( getCategoryDoctors(props.id) )
+    }
+  })
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -65,29 +73,39 @@ const DiseaseScreen = () => {
           <View>
              <Text className={`text-cyan-600 font-bold text-lg px-2 py-1.5 ${Platform.select({android : 'text-sm'})}`} >Specialists</Text>
           </View>
-           {/* <TouchableOpacity
-            onPress={() =>  navigation.navigate('AllCategories')}
-           > 
-           <Text className={`text-amber-500 text-lg mr-1 ${Platform.select({android : 'text-sm mr-2'})}`}  > See All </Text>  
-           </TouchableOpacity> */}
+          
         </View>
-        
-         <FlatList 
-          data={doctors}
-          horizontal = {false}
-          showsHorizontalScrollIndicator ={false}
-          numColumns={2}
-          contentContainerStyle = {{
-            paddingHorizontal : 1,
-            paddingVertical : 5
-          }}
-          renderItem={(itemData) => {
-            return (
-               <ProductCard name={itemData.item.name} image={itemData.item.image}  />
+        <View>
+          {
+            doctors?.category_doctors?.data?.doctors.length >= 1?(
+              <>
+            <FlatList 
+             data={doctors.category_doctors.data.doctors}
+             horizontal = {false}
+             showsHorizontalScrollIndicator ={false}
+             numColumns={2}
+             contentContainerStyle = {{
+               paddingHorizontal : 1,
+               paddingVertical : 5
+             }}
+             renderItem={(itemData) => {
+               return (
+                <ProductCard name={itemData.item.account.firstName} telephone={itemData.item.account.telephone} bibliography={itemData.item.bibliography} lname={itemData.item.account.lastName} image={itemData.item.photo} station={itemData.item.workstation}  experience={itemData.item.experience}  />
+               )
+             }}
+             keyExtractor={(item) => item.id}
+            />
+              </>
             )
-          }}
-          keyExtractor={(item) => item.id}
-         />
+            :
+            <>
+            <View className="flex flex-row justify-between mx-1">
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </View>
+            </>
+          }
+        </View>
       </View>
 
      </View>

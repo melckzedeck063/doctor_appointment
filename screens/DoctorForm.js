@@ -32,7 +32,7 @@ const DoctorForm = () => {
     const { register, handleSubmit, reset, control, formState : {errors} } =  useForm({
         defaultValues  : {
             licenseNo : '',
-            workstation : '',
+            working_station : '',
             experience : '',
             checkNo : '',
             bibliography  : ''
@@ -177,14 +177,14 @@ const DoctorForm = () => {
          required: true,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 border-2 ${Platform.select({android :  'py-1.5'})} ${errors.workstation? 'border-red-500' :  'border-slate-300'}`}
+          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 border-2 ${Platform.select({android :  'py-1.5'})} ${errors.working_station? 'border-red-500' :  'border-slate-300'}`}
           placeholder="Enter station"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="workstation"
+        name="working_station"
       />
       </View>
       <View className="my-2">

@@ -55,3 +55,17 @@ export const  getAllDoctors  =  createAsyncThunk('all/doctors', async() => {
     }
     
 })
+
+export const getCategoryDoctors  = createAsyncThunk('category/doctors', async(id) => {
+    try{
+        const response =    await DOCTOR_API.get(`/category_doctors/${id}`);
+
+        // console.log(response.data)
+        return response.data
+    }
+    catch(error){
+        console.log(error);
+        return error.message
+    }
+    
+})

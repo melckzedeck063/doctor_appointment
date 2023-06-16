@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getAllDiseases, registerDisease } from "../actions/category_actions";
-import { getAllDoctors, registerDoctor } from "../actions/doctor_actions";
+import { getAllDoctors, getCategoryDoctors, registerDoctor } from "../actions/doctor_actions";
 
 
 const doctorSlice = createSlice({
     name:  'doctor',
     initialState :  {
         all_doctors : [],
+        category_doctors   :[],
         new_doctor : null,
         current_doctor  :  null,
         status :  '',
@@ -45,6 +46,17 @@ const doctorSlice = createSlice({
             state.all_doctors  =  action.payload
         })
         .addCase(getAllDoctors.rejected, (state,action) =>  {
+            state.status="Failed",
+            state.error  = action.error.message
+        })
+        .addCase(getCategoryDoctors.pending, (state,action) => {
+            state.status="Loading"
+        })
+        .addCase(getCategoryDoctors.fulfilled, (state,action) => {
+            state.status  ="succesfull",
+            state.category_doctors  =  action.payload
+        })
+        .addCase(getCategoryDoctors.rejected, (state,action) =>  {
             state.status="Failed",
             state.error  = action.error.message
         })
