@@ -5,12 +5,15 @@ import { useForm, FormProvider, SubmitHandler, Controller } from 'react-hook-for
 // import { yupResolver } from '@hookform/resolvers/yup'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import  {responsiveHeight} from 'react-native-responsive-dimensions'
+import { useDispatch } from 'react-redux';
+import { signUpUser } from '../store/actions/user_actions';
 
 
 const SIgnUpScreen = () => {
 
     const navigation = useNavigation();
     const { width, height } = useWindowDimensions();
+    const dispatch =  useDispatch();
 
     const { register, reset, control, handleSubmit, formState: { errors, isDirty, isValid } } = useForm({
         defaultValues :  {
@@ -26,7 +29,9 @@ const SIgnUpScreen = () => {
       
       const onSubmit = data => {
           console.log(data);
-        //   dispatch( signUpUser(data) )
+          dispatch( signUpUser(data) )
+
+          reset()
           
       }
 

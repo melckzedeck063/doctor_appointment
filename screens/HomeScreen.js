@@ -19,6 +19,8 @@ import NavigationDrawer from '../components/NavigationDrawer'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllDiseases } from '../store/actions/category_actions'
 import CategorySkeleton from '../components/categorySkeleton'
+import { getAllDoctors } from '../store/actions/doctor_actions'
+import ProductSkeleton from '../components/productSkeleton'
 
 const categories =  [
   {name : "Heart diseases", image :image1, id : 1 },
@@ -29,14 +31,6 @@ const categories =  [
   {name : "Womens diseases", image :image2, id : 6 },
 ]
 
-const doctors =  [
-    {name : "James Cotton", image :image1, id : 1 },
-  {name : "Joshua Francis", image :image2, id : 2 },
-  {name : "Hamilton Partey", image :image3, id: 3 },
-  {name : "Whitney Humphrey", image : image4 , id : 4},
-  {name : "Miranda Johnson", image :image1, id: 5 },
-  {name : "Ezekiel Michael", image :image1, id : 6 },
-]
 
 const HomeScreen = () => {
     
@@ -47,8 +41,10 @@ const HomeScreen = () => {
     const [reload,setReload] =  useState(0);
 
     const diseases = useSelector(state => state.disease);
-
     // console.log(diseases.diseases);
+
+    const doctors =  useSelector(state => state.doctor);
+    // console.log(doctors.all_doctors);
 
     const handleOutsidePress = (event) => {
       setIsDrawerOpen(false);
@@ -65,7 +61,9 @@ const HomeScreen = () => {
   if(diseases && diseases.diseases && reload < 4){
     dispatch( getAllDiseases() )
   }
- })
+ },[])
+
+ 
 
     useLayoutEffect(() => 
     {
@@ -78,9 +76,13 @@ const HomeScreen = () => {
         })
     })
 
+    useEffect(() => {
+      if(doctors && doctors.all_doctors && reload < 4){
+        dispatch(getAllDoctors())
+      }
+     },[])
+
     const { register, reset, control, handleSubmit, formState: { errors, isDirty, isValid } } =  useForm();
- 
-   
 
 
   return (
@@ -187,16 +189,33 @@ const HomeScreen = () => {
            <Text className={`text-cyan-600 text-lg mr-2 ${Platform.select({android : 'text-sm mr-4'})}`} > See All </Text>  
            </TouchableOpacity> 
           </View>
-          <FlatList className="borderd-2 border-gray-200 rounded pr-3 pl-1" 
-           numColumns={2}
-           data={doctors}
-           showsVerticalScrollIndicator = {false}
-           renderItem={(itemData) => {
-            return (
-              <ProductCard name={itemData.item.name} image={itemData.item.image}  />
+          {
+            doctors?.all_doctors?.data?.data.length >= 1?(
+              <>
+            <FlatList className="borderd-2 border-gray-200 rounded pr-3 pl-1" 
+             numColumns={2}
+             data={doctors.all_doctors.data.data}
+             showsVerticalScrollIndicator = {false}
+             renderItem={(itemData) => {
+              return (
+                <ProductCard name={itemData.item.account.firstName} telephone={itemData.item.account.telephone} bibliography={itemData.item.bibliography} lname={itemData.item.account.lastName} image={itemData.item.photo} station={itemData.item.workstation}  experience={itemData.item.experience}  />
+              )
+             }}
+            />
+              </>
             )
-           }}
-          />
+            : 
+            <>
+            <View className="flex flex-row justify-between mx-3">
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </View>
+            <View className="flex flex-row justify-between mx-3">
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </View>
+            </>
+          }
         </View>
       </View>
       </View>

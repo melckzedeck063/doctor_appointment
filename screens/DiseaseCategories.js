@@ -63,7 +63,7 @@ const DiseaseCategories = () => {
   return (
     <View className="w-full h-full bg-cyan-700">
       <View style={{alignSelf : "center"}} className="my-4 border-b-2 border-slate-400 w-10/12">
-        <Text className="text-lg text-center text-cyan-600" > All Categories </Text>
+        <Text className="text-lg text-center text-white" > Field of Experties </Text>
       </View>
       <View style={{height : responsiveHeight(74)}} className="mx-3">
       {

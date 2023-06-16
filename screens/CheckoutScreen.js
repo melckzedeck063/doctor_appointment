@@ -29,7 +29,7 @@ const CheckoutScreen = () => {
       // Handle payment error
       console.log('Payment failed:', error);
     }
-  };
+  }; 
 
   useLayoutEffect(()  => {
       navigation.setOptions({
@@ -58,6 +58,7 @@ const CheckoutScreen = () => {
           <Text style={styles.label} className={`text-lg my-2 ${Platform.select({android : 'text-xs'})}`}>Email:</Text>
           <TextInput className={`rounded-md bg-gray-100 text-lgg px-4 py-2.5 ${Platform.select({android : 'py-1'})} `}
             placeholder="Email"
+            autoCapitalize = {false}
             keyboardType="email-address"
           />
           </View>

@@ -28,7 +28,7 @@ const DiseaseScreen = () => {
     const {params : {props}} =  useRoute();
     const {width, height} =  useWindowDimensions();
 
-    // console.log(props);
+    console.log(props);
 
     useLayoutEffect(() => {
         navigation.setOptions({

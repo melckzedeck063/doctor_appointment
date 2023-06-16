@@ -8,32 +8,33 @@ import * as ImagePicker from 'expo-image-picker';
 import { Ionicons}  from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 // import {makeNewProduct } from '../store/reduxStore/actions/product_actions';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import  {responsiveHeight,responsiveWidth} from 'react-native-responsive-dimensions';
 import { useWindowDimensions } from 'react-native';
-// import { BASE_URL } from '../store/URL';
+import { BASE_URL } from '../store/URL';
+import { registerDoctor } from '../store/actions/doctor_actions';
 // import { createLaundry } from '../store/actions/laundry_actions';
 
 const DoctorForm = () => {
     
   const [image, setImage] =   useState(null);
   const [imageData, setImageData] =  useState("")
-//   const dispatch =  useDispatch();
-//   const {params : {props} } =  useRoute();
+  const dispatch =  useDispatch();
+  const {params : {props} } =  useRoute();
 
-  // console.log(props);
+  console.log(props);
 
  
 
     const { register, handleSubmit, reset, control, formState : {errors} } =  useForm({
         defaultValues  : {
-            regNo : '',
-            location : '',
+            licenseNo : '',
+            workstation : '',
             experience : '',
-            email : '',
+            checkNo : '',
             bibliography  : ''
         },
         mode : 'all'
@@ -93,10 +94,10 @@ const DoctorForm = () => {
 
     const onSubmit = data => {
       data.photo = imageData
-    //   data.category =  props.id
-      console.log(data)
+      data.category =  props.id
+      // console.log(data)
       
-    //   dispatch( createLaundry(data) )
+      dispatch( registerDoctor(data) )
 
       reset()
     }
@@ -176,15 +177,14 @@ const DoctorForm = () => {
          required: true,
         }}
         render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 border-2 ${Platform.select({android :  'py-1.5'})} ${errors.station? 'border-red-500' :  'border-slate-300'}`}
+          <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 border-2 ${Platform.select({android :  'py-1.5'})} ${errors.workstation? 'border-red-500' :  'border-slate-300'}`}
           placeholder="Enter station"
-          keyboardType='phone-pad'
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="station"
+        name="workstation"
       />
       </View>
       <View className="my-2">
@@ -197,7 +197,6 @@ const DoctorForm = () => {
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput  className={`rounded-md bg-slate-100 px-4 py-2.5 ${Platform.select({android : 'py-1.5'})} border-2 ${errors.experience? 'border-red-500'  :  'border-slate-300'}`}
           placeholder="Enter experience in years"
-          keyboardType='phone-pad'
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
@@ -206,6 +205,9 @@ const DoctorForm = () => {
         name="experience"
       />
       </View>
+
+      
+      
       {/* <View className="my-2">
       <Text className={`text-lg text-slate-800 ${Platform.select({android : 'text-sm'})}`} >Email</Text>
      <Controller

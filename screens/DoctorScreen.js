@@ -3,7 +3,8 @@ import React, { useLayoutEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import {AntDesign, FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import {useResponsiveHeight, useResponsiveWidth, useResponsiveFontSize} from 'react-native-responsive-dimensions'
+import {useResponsiveHeight, useResponsiveWidth, useResponsiveFontSize, responsiveFontSize} from 'react-native-responsive-dimensions'
+import { IMAGE_URL } from '../store/URL'
 
 const DoctorScreen = () => {
 
@@ -11,7 +12,7 @@ const DoctorScreen = () => {
     const {params : {props}} =  useRoute();
     const {width, height} =  useWindowDimensions();
 
-    // console.log(props);
+    console.log(props);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -24,7 +25,7 @@ const DoctorScreen = () => {
      <ScrollView style={{backgroundColor : '#fff'}}  className="bg-slate-800 h-full">
      <View >
      <View className="relative">
-        <Image style={{height : height/2.2}} source={props.image} className="w-full" />
+        <Image style={{height : height/2.2}} source={{uri : `${IMAGE_URL}/${props.image}`}} className="w-full" />
         <View className='absolute inset-0 bg-black/30' ></View>
         {/* <View className="absolute bottom-2 px-2">
             <Text className={`font-bold my-1.5 text-2xl capitalize text-white ${Platform.select({android : 'text-xl'})}`}>{props.name}</Text>
@@ -49,7 +50,7 @@ const DoctorScreen = () => {
         <View>
             <View className="flex flex-row justify-between">
                 <View>
-                    <Text className={`font-bold capitalize text-slate-500 text-xl ${Platform.select({android : 'text-lg'})}`}>{props.name}</Text>
+                    <Text className={`font-bold capitalize text-slate-500 text-xl ${Platform.select({android : 'text-lg'})}`}>{props.name} {props.lname} </Text>
                     <Text className={`text-slate-500 font-medium py-1 ${Platform.select({android : 'text-xs'})}`}>Medicine Specialist</Text>
                 </View>
                 <View>
@@ -93,27 +94,27 @@ const DoctorScreen = () => {
 
      <View className="mx-2 px-2 mb-3">
         <Text className={`font-bold capitalize my-2 text-slate-500 text-xl ${Platform.select({android : 'text-lg'})}`}>Bibliography</Text>
-        <Text className={`font-mediumm capitalize text-slate-500 pxx-1 ${Platform.select({android : 'text-xs'})}`}> 
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quam suscipit veniam ut doloremque quas, reprehenderit commodi deserunt 
-         perferendis ducimus ullam fuga sequi optio laboriosam quaerat ipsum asperiores eius nemo.
-        </Text>
+        <Text className={`font-mediumm capitalize text-slate-500 pxx-1 ${Platform.select({android : 'text-xs'})}`}> {props.bibliography} </Text>
      </View>
 
      <View className={`flex-row flex justify-between mx-4 my-2`}>
         <View className={``}>
-            <Text className={`text-slate-500 text-sm`}>Patients</Text>
-            <Text className={`text-slate-600 font-bold text-lg`}> 1.02K+ </Text>
+            <View className="flex flex-row space-x-3">
+             <Text className="text-center font-bold -ml-1"> <Ionicons name='location' size={24} color="teal"/> </Text>
+            <Text style={{fontSize : responsiveFontSize(2)}} className={`text-slate-500 text-sm`}>Location</Text>
+            </View>
+            <Text className={`text-slate-600 font-bold text-lg`}> The Benjamin Mkapa  Hospital </Text>
         </View>
 
         <View className={``}>
-            <Text className={`text-slate-500 text-sm`}>Experience</Text>
-            <Text className={`text-slate-600 font-bold text-lg`}> 5 Years </Text>
+            <Text style={{fontSize : responsiveFontSize(2)}} className={`text-slate-500 text-sm`}>Experience</Text>
+            <Text className={`text-slate-600 font-bold text-lg`}> {props.experience} </Text>
         </View>
 
-        <View className={``}>
+        {/* <View className={``}>
             <Text className={`text-slate-500 text-sm`}>Reviews</Text>
             <Text className={`text-slate-600 font-bold text-lg`}> 2.00K+ </Text>
-        </View>
+        </View> */}
      </View>
 
 
