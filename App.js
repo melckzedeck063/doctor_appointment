@@ -93,6 +93,9 @@ export default function App() {
             <Stack.Screen name="ChatScreen" component={ChatScreen} 
                 options={{title  :  'My Chats'}}
              />
+             <Stack.Screen name="ThreadScreen" component={ThreadScreen} 
+                options={{title  :  'My Messages'}}
+             />
             <Stack.Screen name="Settings" component={SettingsScreen} 
                 options={{title  :  'Settings Screen'}}
              />
@@ -130,6 +133,7 @@ import CompletedAppointments from './screens/CompletedAppointments';
 import AppointmentSchedule from './screens/AppointmentSchedule';
 import CheckoutScreen from './screens/CheckoutScreen';
 import DiseaseCategories from './screens/DiseaseCategories';
+import ThreadScreen from './screens/ThreadScreen';
 
 const Tab = createMaterialTopTabNavigator();
 

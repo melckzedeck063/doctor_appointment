@@ -1,19 +1,37 @@
 import { Feather, Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import { useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, FlatList, Platform, KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 
 import  {responsiveHeight, responsiveWidth, responsiveFontSize} from 'react-native-responsive-dimensions'
+import { useDispatch, useSelector } from 'react-redux';
+import { getMyChats, sendMessage } from '../store/actions/message_actions';
 
 export default function MessageScreen() {
   const [message, setMessage] = useState('');
-  const [chat, setChat] = useState([
-    { id: 1, sender: true, message: 'Hey, how are you?' },
-    { id: 2, sender: false, message: 'I am doing well, thanks for asking!' },
-    { id: 3, sender: true, message: 'That is good to hear. What have you been up to?' },
-    { id: 4, sender: false, message: 'Not much, just been working on some projects. How about you?' },
-  ]);
+  const {params : {props}} =  useRoute();
+  const dispatch =  useDispatch();
+  const [reload,setReload] =  useState(0);
+
+  setTimeout(() => {
+    if(reload  <= 5){
+      setReload(reload => reload + 1)
+    }
+  }, 1000);
+
+  const messages =  useSelector(state => state.message);
+  
+  // console.log(messages.chats)
+
+
+  useEffect(()  => {
+     
+    if(messages &&  messages.chats && reload < 4){
+      dispatch( getMyChats(props.id) )
+    }
+  },[])
 
   const handleSendMessage = () => {
     if (message.trim() === '') {
@@ -21,30 +39,46 @@ export default function MessageScreen() {
     }
 
     const newMessage = {
-      id: chat.length + 1,
-      sender: true,
+      receiver : props.id,
       message: message.trim(),
     };
+    
+    dispatch( sendMessage(newMessage))
 
-    setChat([...chat, newMessage]);
-    setMessage('');
+    dispatch( getMyChats(props.id) )
   };
 
   return (
       <KeyboardAwareScrollView style={{marginVertical : 5}}>
        <View style={{backgroundColor : 'white', height :  responsiveHeight(90)}} className="relative">
-
+        <View className="flex-row space-x-4 justify-center border-b-2 border-cyan-700">
+        <Text style={{fontSize  :  responsiveFontSize(2)}} className="text-center text-cyan-700 font-medium pt-1 pb-3" > To :  </Text>
+          <Text style={{fontSize  :  responsiveFontSize(2)}} className="text-center text-cyan-700 font-bold pt-1.5 pb-3" > {props.name} {props.lname} </Text>
+        </View>
         <View  style={{ width : responsiveWidth(94), alignSelf : 'center'}}>
-          <FlatList
-             data={chat}
-             renderItem={(itemData) => {
-                 return (
-                     <View key={itemData.item.id} style={itemData.item.sender ? styles.sender : styles.receiver}>
-                     <Text style={itemData.item.sender ? styles.senderText : styles.receiverText}>{itemData.item.message}</Text>
-                   </View>
-                 )
-             }}
-             />
+          {
+            messages?.chats?.data?.messages.length >=1?(
+              <>
+            <FlatList
+               data={messages.chats.data.messages}
+               renderItem={({ item }) => (
+                <View key={item._id} style={item.sender === "648b7a972e783eb6979d16d8" ? styles.sender : styles.receiver}>
+                  <Text style={item.sender === "648b7a972e783eb6979d16d8" ? styles.senderText : styles.receiverText}>
+                    {item.message}
+                  </Text>
+                </View>
+              )}
+              
+               />
+              </>
+            )
+            : 
+            <>
+            <View  >
+              <Text style={{fontSize : responsiveFontSize(2)}} className="text-center text-red-400 font-bold py-32" >No Messages</Text>
+            </View>
+            </>
+          }
        </View>
 
  <KeyboardAvoidingView style={{alignSelf : 'center'}} className={`absolute bottom-3 ${Platform.select({ios : 'bottom-10'})}`}>

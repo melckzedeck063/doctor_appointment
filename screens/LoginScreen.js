@@ -101,7 +101,7 @@ const LoginScreen = () => {
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput  className={`rounded-md text-slate-800 bg-gray-200 text-lgg px-4 py-2.5 ${Platform.select({android : 'py-1.5'})} ${errors.username? 'border-2 border-red-500' : 'border-2 border-slate-300'}`}
-          placeholder="Enter username"
+            placeholder="Enter username"
             onBlur={onBlur}
             onChangeText={onChange}
             autoCapitalize ={false}

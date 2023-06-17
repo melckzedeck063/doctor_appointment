@@ -12,7 +12,7 @@ const DoctorScreen = () => {
     const {params : {props}} =  useRoute();
     const {width, height} =  useWindowDimensions();
 
-    console.log(props);
+    // console.log(props);
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -55,7 +55,7 @@ const DoctorScreen = () => {
                 </View>
                 <View>
                      <TouchableOpacity className="bg-cyan-600 px-4 py-2 rounded-lg flex-row flex space-x-4" 
-                       onPress={() => navigation.navigate('Message') }
+                       onPress={() => navigation.navigate('Message', {props}) }
                      >
                         <Text  className={``}>
                             <AntDesign name='message1' size={24}  color='white' />
@@ -103,7 +103,7 @@ const DoctorScreen = () => {
              <Text className="text-center font-bold -ml-1"> <Ionicons name='location' size={24} color="teal"/> </Text>
             <Text style={{fontSize : responsiveFontSize(2)}} className={`text-slate-500 text-sm`}>Location</Text>
             </View>
-            <Text className={`text-slate-600 font-bold text-lg`}> The Benjamin Mkapa  Hospital </Text>
+            <Text className={`text-slate-600 font-bold text-lg`}> {props.station} </Text>
         </View>
 
         <View className={``}>

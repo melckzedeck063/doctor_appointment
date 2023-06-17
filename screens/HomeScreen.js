@@ -198,7 +198,7 @@ const HomeScreen = () => {
              showsVerticalScrollIndicator = {false}
              renderItem={(itemData) => {
               return (
-                <ProductCard name={itemData.item.account.firstName} telephone={itemData.item.account.telephone} bibliography={itemData.item.bibliography} lname={itemData.item.account.lastName} image={itemData.item.photo} station={itemData.item.workstation}  experience={itemData.item.experience}  />
+                <ProductCard name={itemData.item.account.firstName} telephone={itemData.item.account.telephone} bibliography={itemData.item.bibliography} lname={itemData.item.account.lastName} image={itemData.item.photo} station={itemData.item.working_station}  experience={itemData.item.experience} id={itemData.item._id} />
               )
              }}
             />
